@@ -14,7 +14,6 @@ Module 9: Node.js Challenge: Professional README Generator
   * [Badges](#Badges)
   * [Demo](#Demo)
   * [Technologies](#Technologies)
-  * [Deployment](#Deployment)
 
 ## Usage
 
