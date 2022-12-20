@@ -51,7 +51,7 @@ function generateMarkdown(data) {
 // -- include the title of the project and sections entitled Description
 // -- Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
   return `# ${data.title}
-  ![GitHub license](${renderLicenseBadge(data.license)}})
+  ${renderLicenseBadge(data.license)}
 
   ## Description
   ${data.description}
