@@ -1,11 +1,12 @@
-// TODO: Include packages needed for this application
 // --- import modules ---
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown");
 
-// TODO: Create an array of questions for user input
+
 const questions = [
-// --- https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide --    
+  // --- https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide --
+  // -- questions include title, description, installation, usage, license, contributing, tests, email, github username
   {
     type: "input",
     name: "title",
@@ -29,6 +30,8 @@ const questions = [
     type: "input",
     name: "installation",
     message: "Please provide installation instructions for your project.",
+    // -- provide a default value with "npm install"
+    default: "npm install",
     validate: (userInput) =>
       userInput
         ? true
@@ -48,19 +51,28 @@ const questions = [
           false),
   },
   {
+    type: "list",
+    name: "license",
+    message: "Please select a license for your project.",
+    choices: ["MIT", "Apache", "GPL", "BSD", "None"],
+  },
+  {
     type: "input",
     name: "contribution",
     message: "How should people contribute to this project?",
     validate: (userInput) =>
       userInput
         ? true
-        : (console.log("Please provide contribution guidelines for your project"),
+        : (console.log(
+            "Please provide contribution guidelines for your project"
+          ),
           false),
   },
   {
     type: "input",
     name: "test",
     message: "Please provide test instructions for your project.",
+    default: "npm test",
     validate: (userInput) =>
       userInput
         ? true
@@ -68,10 +80,13 @@ const questions = [
           false),
   },
   {
-    type: "list",
-    name: "license",
-    message: "Please select a license for your project.",
-    choices: ["MIT", "Apache", "GPL", "BSD", "None"],
+    type: "input",
+    name: "email",
+    message: "Please provide your email address.",
+    validate: (userInput) =>
+    userInput
+    ? true
+    : (console.log("Please enter your email address"), false),
   },
   {
     type: "input",
@@ -84,18 +99,24 @@ const questions = [
   },
 ];
 
-// TODO: Create a function to write README file
+
 function writeToFile(fileName, data) {
-    // --- function to write readme file ---
+  // --- function to write readme file ---
   fs.writeFile(fileName, data, (err) =>
-    err ? console.log(err) : console.log("Successfully write into the README.md!")
+    err
+      ? console.log(err)
+      : console.log("Successfully write into the README.md!")
   );
 }
 
-// TODO: Create a function to initialize app
+
+//a function to initialize app
 function init() {
-    // --- get user input with prompted questions
-  inquirer.prompt(questions);
+  // --- get user input with prompted questions
+  inquirer.prompt(questions).then((data) => {
+    // --- create readme file
+    writeToFile("sampleREADME.md", generateMarkdown(data));
+  });
 }
 
 // Function call to initialize app
