@@ -46,8 +46,3 @@ https://user-images.githubusercontent.com/112605297/208602691-64b5a50e-ff10-4452
 **Dependencies:** inquirer 8.2.4
 
 
-
-## Deployment
-
-[Click here for the deployed application](https://mxu4321.github.io/Professional_README_Generator/)
-
